@@ -4,6 +4,7 @@ const fn = require('./funcoes');
 
 const caminho = path.join(__dirname, '..', 'legendas');
 
-const arquivos = fn.lerDiretorio(caminho);
-
-console.log(arquivos);
+fn.lerDiretorio(caminho)
+  .then((arquivos) => fn.filtrandoArquivosPor(arquivos, '.srt'))
+  .then((arquivosSTR) => fn.lerVariosArquivos(arquivosSTR))
+  .then(console.log);
