@@ -7,4 +7,7 @@ const caminho = path.join(__dirname, '..', 'legendas');
 fn.lerDiretorio(caminho)
   .then((arquivos) => fn.filtrandoArquivosPor(arquivos, '.srt'))
   .then((arquivosSTR) => fn.lerVariosArquivos(arquivosSTR))
+  .then((conteudo) => conteudo.join('\n'))
+  .then((todoConteudo) => todoConteudo.split('\n'))
+  .then((linhas) => fn.removeEmptyLines(linhas))
   .then(console.log);

@@ -35,8 +35,14 @@ function filtrandoArquivosPor(arr, padrao) {
   return arr.filter((el) => el.endsWith(padrao));
 }
 
+//remove as linhas do array que tiver o conteudo vazio
+function removeEmptyLines(array) {
+  return array.filter((str) => str.trim());
+}
+
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
   filtrandoArquivosPor,
+  removeEmptyLines,
 };
