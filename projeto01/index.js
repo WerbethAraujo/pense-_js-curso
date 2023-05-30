@@ -10,4 +10,6 @@ fn.lerDiretorio(caminho)
   .then((conteudo) => conteudo.join('\n'))
   .then((todoConteudo) => todoConteudo.split('\n'))
   .then((linhas) => fn.removeEmptyLines(linhas))
+  .then((linhas) => fn.removeLinhasComTempo(linhas, '-->'))
+  .then((linhas) => fn.removeLinhasComNumeros(linhas))
   .then(console.log);

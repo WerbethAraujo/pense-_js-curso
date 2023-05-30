@@ -26,13 +26,14 @@ function lendoUmArquivo(caminho) {
   });
 }
 
+// funcao que executa a funcao de ler apenas um arquivo varias vezes
 function lerVariosArquivos(caminhos) {
   return Promise.all(caminhos.map((caminho) => lendoUmArquivo(caminho)));
 }
 
 // filtra os arquivos terminados em determinada string, no caso do projeto vai ser a extensão do arquivo
-function filtrandoArquivosPor(arr, padrao) {
-  return arr.filter((el) => el.endsWith(padrao));
+function filtrandoArquivosPor(arr, string) {
+  return arr.filter((el) => el.endsWith(string));
 }
 
 //remove as linhas do array que tiver o conteudo vazio
@@ -40,9 +41,25 @@ function removeEmptyLines(array) {
   return array.filter((str) => str.trim());
 }
 
+// funcao para remover as linhas com intervalos de tempo
+function removeLinhasComTempo(arr, string) {
+  return arr.filter((el) => !el.includes(string));
+}
+
+//funcao para remover linhas com apenas numeros
+function removeLinhasComNumeros(arr) {
+  return arr.filter((el) => {
+    const num = parseInt(el.trim());
+
+    return num !== num;
+  });
+}
+
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
   filtrandoArquivosPor,
   removeEmptyLines,
+  removeLinhasComTempo,
+  removeLinhasComNumeros,
 };
