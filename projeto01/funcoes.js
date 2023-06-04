@@ -55,6 +55,19 @@ function removeLinhasComNumeros(arr) {
   });
 }
 
+//funcao para remover simbolos
+function removeSimbolos(simbolos) {
+  return function (arr) {
+    return arr.map((el) => {
+      let textoSemSimbolo = el;
+      simbolos.forEach((simbolo) => {
+        textoSemSimbolo = textoSemSimbolo.split(simbolo).join('');
+      });
+      return textoSemSimbolo;
+    });
+  };
+}
+
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
@@ -62,4 +75,5 @@ module.exports = {
   removeEmptyLines,
   removeLinhasComTempo,
   removeLinhasComNumeros,
+  removeSimbolos,
 };
