@@ -72,6 +72,18 @@ function removeSimbolos(simbolos) {
   };
 }
 
+//funcao para mesclar os elementos do array
+function mesclarElementos(array) {
+  return array.join(' ');
+}
+
+//funcao para separa uma string por determinado simbolo
+function separarPorDeterminadoSimbolo(simbolo) {
+  return function (string) {
+    return string.split(simbolo);
+  };
+}
+
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
@@ -80,4 +92,6 @@ module.exports = {
   removeLinhasComDeterminadaString,
   removeLinhasComNumeros,
   removeSimbolos,
+  mesclarElementos,
+  separarPorDeterminadoSimbolo,
 };
