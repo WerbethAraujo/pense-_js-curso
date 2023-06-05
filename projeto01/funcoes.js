@@ -32,23 +32,27 @@ function lerVariosArquivos(caminhos) {
 }
 
 // filtra os arquivos terminados em determinada string, no caso do projeto vai ser a extensão do arquivo
-function filtrandoArquivosPor(arr, string) {
-  return arr.filter((el) => el.endsWith(string));
+function filtrandoArquivosPorExtencao(extensao) {
+  return function (array) {
+    return array.filter((el) => el.endsWith(extensao));
+  };
 }
 
 //remove as linhas do array que tiver o conteudo vazio
-function removeEmptyLines(array) {
+function removerLinhasVazias(array) {
   return array.filter((str) => str.trim());
 }
 
 // funcao para remover as linhas com intervalos de tempo
-function removeLinhasComTempo(arr, string) {
-  return arr.filter((el) => !el.includes(string));
+function removeLinhasComDeterminadaString(string) {
+  return function (array) {
+    return array.filter((el) => !el.includes(string));
+  };
 }
 
 //funcao para remover linhas com apenas numeros
-function removeLinhasComNumeros(arr) {
-  return arr.filter((el) => {
+function removeLinhasComNumeros(array) {
+  return array.filter((el) => {
     const num = parseInt(el.trim());
 
     return num !== num;
@@ -57,8 +61,8 @@ function removeLinhasComNumeros(arr) {
 
 //funcao para remover simbolos
 function removeSimbolos(simbolos) {
-  return function (arr) {
-    return arr.map((el) => {
+  return function (array) {
+    return array.map((el) => {
       let textoSemSimbolo = el;
       simbolos.forEach((simbolo) => {
         textoSemSimbolo = textoSemSimbolo.split(simbolo).join('');
@@ -71,9 +75,9 @@ function removeSimbolos(simbolos) {
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
-  filtrandoArquivosPor,
-  removeEmptyLines,
-  removeLinhasComTempo,
+  filtrandoArquivosPorExtencao,
+  removerLinhasVazias,
+  removeLinhasComDeterminadaString,
   removeLinhasComNumeros,
   removeSimbolos,
 };

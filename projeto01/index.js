@@ -7,12 +7,12 @@ const caminho = path.join(__dirname, '..', 'legendas');
 const simbolos = ['.', '?', '-', ',', '"', '_', '<i>', '</i>', '\r', '♪'];
 
 fn.lerDiretorio(caminho)
-  .then((arquivos) => fn.filtrandoArquivosPor(arquivos, '.srt'))
-  .then((arquivosSTR) => fn.lerVariosArquivos(arquivosSTR))
+  .then(fn.filtrandoArquivosPorExtencao('.srt'))
+  .then(fn.lerVariosArquivos)
   .then((conteudo) => conteudo.join('\n'))
   .then((todoConteudo) => todoConteudo.split('\n'))
-  .then((linhas) => fn.removeEmptyLines(linhas))
-  .then((linhas) => fn.removeLinhasComTempo(linhas, '-->'))
-  .then((linhas) => fn.removeLinhasComNumeros(linhas))
+  .then(fn.removerLinhasVazias)
+  .then(fn.removeLinhasComDeterminadaString('-->'))
+  .then(fn.removeLinhasComNumeros)
   .then(fn.removeSimbolos(simbolos))
   .then(console.log);
