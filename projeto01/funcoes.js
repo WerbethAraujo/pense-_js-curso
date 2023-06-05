@@ -5,9 +5,11 @@ const path = require('node:path');
 function lerDiretorio(caminho) {
   return new Promise((resolve, reject) => {
     try {
-      let arquivos = fs.readdirSync(caminho);
-      arquivos = arquivos.map((arquivo) => path.join(caminho, arquivo));
-      resolve(arquivos);
+      const arquivos = fs.readdirSync(caminho);
+      const arquivosCompletos = arquivos.map((arquivo) =>
+        path.join(caminho, arquivo)
+      );
+      resolve(arquivosCompletos);
     } catch (error) {
       reject(error);
     }
@@ -63,11 +65,9 @@ function removeLinhasComNumeros(array) {
 function removeSimbolos(simbolos) {
   return function (array) {
     return array.map((el) => {
-      let textoSemSimbolo = el;
-      simbolos.forEach((simbolo) => {
-        textoSemSimbolo = textoSemSimbolo.split(simbolo).join('');
-      });
-      return textoSemSimbolo;
+      return simbolos.reduce((acc, simbolo) => {
+        return acc.split(simbolo).join('');
+      }, el);
     });
   };
 }
