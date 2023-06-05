@@ -84,6 +84,30 @@ function separarPorDeterminadoSimbolo(simbolo) {
   };
 }
 
+// funcao para agrupar todas as palavras iguais do texto
+function agruparPalavrasIguais(palavras) {
+  return Object.values(
+    palavras.reduce((grupoDePalavra, palavra) => {
+      const el = palavra.toLowerCase();
+      const qtd = grupoDePalavra[el] ? grupoDePalavra[el].qtd + 1 : 1;
+
+      grupoDePalavra[el] = { elemento: el, qtd };
+
+      return grupoDePalavra;
+    }, {})
+  );
+}
+
+// funcao para ordenar palavras por quantidade
+function ordenarPalavrasPorQtd(qtd, ordem = 'asc') {
+  return function (array) {
+    const asc = (Obj1, Obj2) => Obj1[qtd] - Obj2[qtd];
+    const desc = (Obj1, Obj2) => Obj2[qtd] - Obj1[qtd];
+
+    return array.sort(ordem === 'asc' ? asc : desc);
+  };
+}
+
 module.exports = {
   lerDiretorio,
   lerVariosArquivos,
@@ -94,4 +118,6 @@ module.exports = {
   removeSimbolos,
   mesclarElementos,
   separarPorDeterminadoSimbolo,
+  agruparPalavrasIguais,
+  ordenarPalavrasPorQtd,
 };

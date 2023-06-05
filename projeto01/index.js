@@ -18,4 +18,6 @@ fn.lerDiretorio(caminho)
   .then(fn.mesclarElementos)
   .then(fn.separarPorDeterminadoSimbolo(' '))
   .then(fn.removerLinhasVazias)
+  .then(fn.agruparPalavrasIguais)
+  .then(fn.ordenarPalavrasPorQtd('qtd', 'desc'))
   .then(console.log);
